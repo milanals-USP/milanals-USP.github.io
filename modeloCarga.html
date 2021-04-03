@@ -127,11 +127,11 @@ function chamaApi(){
     wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7,function(result) { 
         
 
-        console.log(result) ; 
+        //console.log(result) ; 
 	
 	    
 	    obj = JSON.parse(result);
-	    console.log(obj.Result);
+	    //console.log(obj.Result);
 	    
 	    obj2 = JSON.parse(obj.Result);
 	    console.log(obj2);
@@ -140,7 +140,7 @@ function chamaApi(){
         //window.document.getElementById('saida').innerHTML=result.replace(/\"/g, "");
 	//window.document.getElementById('saida').innerHTML="aaaa";
 	    
-	    window.document.getElementById('saida').innerHTML=obj.Result
+	    window.document.getElementById('saida').innerHTML=obj2
 
        
         
