@@ -115,7 +115,7 @@ document.getElementById('executa').addEventListener("click",chamaApi);
 function chamaApi(){
     var wcc = new WolframCloudCall();
 
-	var obj;
+	var obj,obj2;
 	
     arg1=document.getElementById('VNomAbs').value;
     arg2=document.getElementById('VNomDeg').value;
@@ -132,6 +132,9 @@ function chamaApi(){
 	    
 	    obj = JSON.parse(result);
 	    console.log(obj.Result);
+	    
+	    obj2 = JSON.parse(obj.Result);
+	    console.log(obj2);
 	    
         //window.document.getElementById('saida').textContent=result.replace(/\"/g, "").toString();
         //window.document.getElementById('saida').innerHTML=result.replace(/\"/g, "");
