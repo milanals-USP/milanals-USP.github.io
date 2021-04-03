@@ -14,7 +14,10 @@ and open the template in the editor.
         
             Modelo de carga:<br>
         <br> 
-        <div id="saida">saida (modelo)</div><br>
+        	<div id="saida1">saida1</div><br>
+		 <div id="saida2">saida2</div><br>
+		 <div id="saida3">saida3</div><br>
+		 <div id="saida4">saida4</div><br>
         
        
         <input type="text" id="VNomAbs" value=100><br>
@@ -135,8 +138,10 @@ function chamaApi(){
 	    obj3 = JSON.parse(obj2);
 	    console.log(obj3);
 	 
-	window.document.getElementById('saida').innerHTML = 'iAbs = ' + obj3.iAbs;
-
+	window.document.getElementById('saida1').innerHTML = 'iAbs = ' + obj3.iAbs;
+	window.document.getElementById('saida2').innerHTML = 'iDeg = ' + obj3.iAbs;
+	window.document.getElementById('saida3').innerHTML = 'SR = ' + obj3.iAbs;
+	window.document.getElementById('saida4').innerHTML = 'SI = ' + obj3.iAbs;
         
         
         
