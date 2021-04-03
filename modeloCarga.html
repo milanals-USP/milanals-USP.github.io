@@ -131,11 +131,13 @@ function chamaApi(){
 	
 	    
 	    obj = JSON.parse(result);
-	    console.log(obj);
+	    console.log(obj.Result);
 	    
         //window.document.getElementById('saida').textContent=result.replace(/\"/g, "").toString();
-        window.document.getElementById('saida').innerHTML=result.replace(/\"/g, "");
+        //window.document.getElementById('saida').innerHTML=result.replace(/\"/g, "");
 	//window.document.getElementById('saida').innerHTML="aaaa";
+	    
+	    window.document.getElementById('saida').innerHTML=obj.Result
 
        
         
