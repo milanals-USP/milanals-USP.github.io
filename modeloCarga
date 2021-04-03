@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>API Wolfram</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <body>
+        
+            Modelo de carga:<br>
+        
+        <div id="saida">saida</div><br>
+        
+       
+        <input type="text" id="VnomAbs" value=100<br>
+        <input type="text" id="VnomDeg" value=0><br>
+        <input type="text" id="SNomR" value=100><br>
+        <input type="text" id="SnomI" value=0><br>
+        <input type="text" id="modelo" value="z"><br>
+        <input type="text" id="VAbs" value=100><br>
+        <input type="text" id="VDeg" value=0><br>
+        
+        <input type="button" id="executa" value="executa">
+      
+    </body>
+     <script type="text/javascript" async="async">
+
+/* 
+JavaScript EmbedCode usage:
+
+var wcc = new WolframCloudCall();
+wcc.call(arg, function(result) { console.log(result); });
+*/
+       
+
+ 
+/* 
+JavaScript EmbedCode usage:
+
+var wcc = new WolframCloudCall();
+wcc.call(arg1, arg2, function(result) { console.log(result); });
+*/
+ 
+var WolframCloudCall;
+
+(function() {
+WolframCloudCall = function() {	this.init(); };
+
+var p = WolframCloudCall.prototype;
+
+p.init = function() {};
+
+p._createCORSRequest = function(method, url) {
+	var xhr = new XMLHttpRequest();
+	if ("withCredentials" in xhr) {
+		xhr.open(method, url, true);
+	} else if (typeof XDomainRequest != "undefined") {
+		xhr = new XDomainRequest();
+		xhr.open(method, url);
+	} else {
+		xhr = null;
+	}
+	return xhr;
+};
+
+p._encodeArgs = function(args) {
+	var argName;
+	var params = "";
+	for (argName in args) {
+		params += (params == "" ? "" : "&");
+		params += encodeURIComponent(argName) + "=" + encodeURIComponent(args[argName]);
+	}
+	return params;
+};
+
+p._auxCall = function(url, args, callback) {
+	var params = this._encodeArgs(args);
+	var xhr = this._createCORSRequest("post", url);
+	if (xhr) {
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		//xhr.setRequestHeader("EmbedCode-User-Agent", "EmbedCode-JavaScript/1.0");
+		xhr.onload = function() {
+			if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+				callback(xhr.responseText);
+			} else {
+				callback(null);
+			}
+		};
+		xhr.send(params);
+	} else {
+		throw new Error("Could not create request object.");
+	}
+};
+
+p.call = function(arg1, arg2, callback) {
+	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/testApi";
+	var args = {arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7};
+	var callbackWrapper = function(result) {
+		if (result === null) callback(null);
+		else callback(result);
+	};
+	this._auxCall(url, args, callbackWrapper);
+};
+})();
+
+
+
+document.getElementById('executa').addEventListener("click",chamaApi);
+
+function chamaApi(){
+    var wcc = new WolframCloudCall();
+    arg1=document.getElementById('VNomAbs').value;
+    arg2=document.getElementById('VNomDeg').value;
+    arg3=document.getElementById('SNomR').value;
+    arg4=document.getElementById('SNomI').value;
+    arg5=document.getElementById('modelo').value;
+    arg6=document.getElementById('VAbs').value;
+    arg7=document.getElementById('VDeg').value;
+    wcc.call(arg1, arg2,function(result) { 
+        
+
+        console.log(result) ; 
+        //window.document.getElementById('saida').textContent=result.replace(/\"/g, "").toString();
+        window.document.getElementById('saida').innerHTML=result.replace(/\"/g, "");
+
+       
+        
+        
+        
+    }
+            );
+    }
+        
+        </script>
+
+</html>
