@@ -21,11 +21,9 @@ and open the template in the editor.
         
        
         VNom: <input type="text" id="VNomAbs" value=100><br>
-        <input type="text" id="SNomR" value=100><br>
-        <input type="text" id="SNomI" value=0><br>
-        <input type="text" id="modelo" value="z"> <input type="text" id="fatorz" value=1> <input type="text" id="fatori" value=0><input type="text" id="fatorp" value=0><br>
-        <input type="text" id="VAbs" value=100><br>
-        <input type="text" id="VDeg" value=0><br>
+        PNom: <input type="text" id="SNomR" value=100> SNom: <input type="text" id="SNomI" value=0><br>
+        modelo (z/i/p/zip): <input type="text" id="modelo" value="z"> z: <input type="text" id="fatorz" value=1> i: <input type="text" id="fatori" value=0> p: <input type="text" id="fatorp" value=0><br>
+        módulo de V: <input type="text" id="VAbs" value=100>, ângulo <input type="text" id="VDeg" value=0><br>
         
         <input type="button" id="executa" value="executa">
       
@@ -137,6 +135,7 @@ function chamaApi(){
 	arg6=parseFloat(arg8);
     arg9=document.getElementById('fatorp').value;
 	arg6=parseFloat(arg9);
+	if(fatorz+fatori+fatorp!=1) window.alert('Os fatores z,i,p devem somar zero!')
     wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, function(result) { 
         
 
