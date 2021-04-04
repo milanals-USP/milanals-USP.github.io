@@ -21,7 +21,6 @@ and open the template in the editor.
         
        
         <input type="text" id="VNomAbs" value=100><br>
-        <input type="text" id="VNomDeg" value=0><br>
         <input type="text" id="SNomR" value=100><br>
         <input type="text" id="SNomI" value=0><br>
         <input type="text" id="modelo" value="z"><br>
@@ -100,9 +99,9 @@ p._auxCall = function(url, args, callback) {
 	}
 };
 
-p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, callback) {
+p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, callback) {
 	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/modeloCarga";
-	var args = {arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7};
+	var args = {arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6};
 	var callbackWrapper = function(result) {
 		if (result === null) callback(null);
 		else callback(result);
@@ -122,19 +121,19 @@ function chamaApi(){
 	var obj,obj2,obj3;
 	
     arg1=document.getElementById('VNomAbs').value;
-    arg2=document.getElementById('VNomDeg').value;
-    arg3=document.getElementById('SNomR').value;
-    arg4=document.getElementById('SNomI').value;
-    arg5=document.getElementById('modelo').value;
-    arg6=document.getElementById('VAbs').value;
-    arg7=document.getElementById('VDeg').value;
-    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7,function(result) { 
+    arg2=document.getElementById('SNomR').value;
+    arg3=document.getElementById('SNomI').value;
+    arg4=document.getElementById('modelo').value;
+    arg5=document.getElementById('VAbs').value;
+    arg6=document.getElementById('VDeg').value;
+    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, function(result) { 
         
 
         //console.log(result) ; 
 	
 	    
 	    console.log(arg1);
+	    console.log(arg5);
 	    console.log(typeof arg1);
 	    obj=JSON.parse(result);
 	    console.log(obj);
