@@ -99,9 +99,9 @@ p._auxCall = function(url, args, callback) {
 	}
 };
 
-p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, callback) {
+p.call = function(VNomAbs, arg2, arg3, arg4, arg5, arg6, callback) {
 	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/modeloCarga";
-	var args = {arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6};
+	var args = {VNomAbs: VNomAbs, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6};
 	var callbackWrapper = function(result) {
 		if (result === null) callback(null);
 		else callback(result);
@@ -120,20 +120,20 @@ function chamaApi(){
 
 	var obj,obj2,obj3;
 	
-    arg1=document.getElementById('VNomAbs').value;
-	arg1=parseFloat(arg1);
+    VNomAbs=document.getElementById('VNomAbs').value;
+	VNomAbs=parseFloat(VNomAbs);
     arg2=document.getElementById('SNomR').value;
     arg3=document.getElementById('SNomI').value;
     arg4=document.getElementById('modelo').value;
     arg5=document.getElementById('VAbs').value;
     arg6=document.getElementById('VDeg').value;
-    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, function(result) { 
+    wcc.call(VNomAbs, arg2, arg3, arg4, arg5, arg6, function(result) { 
         
 
         //console.log(result) ; 
 	
 	    
-	    console.log(arg1);
+	    console.log(VNomAbs);
 	    console.log(arg5);
 	    console.log(typeof arg1);
 	    obj=JSON.parse(result);
