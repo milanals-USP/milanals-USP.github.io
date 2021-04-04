@@ -123,25 +123,23 @@ function chamaApi(){
     arg1=document.getElementById('VNomAbs').value;
 	arg1=parseFloat(arg1);
     arg2=document.getElementById('SNomR').value;
+	arg2=parseFloat(arg2);
     arg3=document.getElementById('SNomI').value;
+	arg3=parseFloat(arg3);
     arg4=document.getElementById('modelo').value;
     arg5=document.getElementById('VAbs').value;
+	arg5=parseFloat(arg5);
     arg6=document.getElementById('VDeg').value;
+	arg6=parseFloat(arg6);
     wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, function(result) { 
         
 
         //console.log(result) ; 
 	
 	    
-	    console.log(arg1);
-	    console.log(arg5);
-	    console.log(typeof arg1);
 	    obj=JSON.parse(result);
-	    console.log(obj);
 	    obj2 = JSON.parse(obj.Result);
-	    console.log(obj2);
 	    obj3 = JSON.parse(obj2);
-	    console.log(obj3);
 	 
 	window.document.getElementById('saida1').innerHTML = 'iAbs = ' + obj3.iAbs;
 	window.document.getElementById('saida2').innerHTML = 'iDeg = ' + obj3.iDeg;
