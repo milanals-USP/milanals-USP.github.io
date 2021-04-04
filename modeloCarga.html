@@ -108,6 +108,7 @@ p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, callback) {
 		else callback(result);
 	};
 	this._auxCall(url, args, callbackWrapper);
+	console.log(args);
 };
 })();
 
@@ -134,7 +135,6 @@ function chamaApi(){
 	
 	    
 	    console.log(arg1);
-	    console.log(args);
 	    console.log(typeof arg1);
 	    obj=JSON.parse(result);
 	    console.log(obj);
