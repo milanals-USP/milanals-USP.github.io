@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>API Wolfram</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <body>
+        
+            Modelo de carga:<br>
+        <br> 
+        	<div id="saida1">saida1</div><br>
+		 <div id="saida2">saida2</div><br>
+		 <div id="saida3">saida3</div><br>
+		 <div id="saida4">saida4</div><br>
+        
+       
+        VNom: <input type="text" id="VNomAbs" value=100><br>
+        PNom: <input type="text" id="SNomR" value=100> SNom: <input type="text" id="SNomI" value=0><br>
+        modelo (z/i/p/zip): <input type="text" id="modelo" value="z"> z: <input type="text" id="fatorz" value=1> i: <input type="text" id="fatori" value=0> p: <input type="text" id="fatorp" value=0><br>
+        módulo de V: <input type="text" id="VAbs" value=100>, ângulo <input type="text" id="VDeg" value=0><br>
+        
+        <input type="button" id="executa" value="executa">
+      
+    </body>
+     <script type="text/javascript" async="async">
+
+/* 
+JavaScript EmbedCode usage:
+var wcc = new WolframCloudCall();
+wcc.call(arg, function(result) { console.log(result); });
+*/
+       
+
+ 
+/* 
+JavaScript EmbedCode usage:
+var wcc = new WolframCloudCall();
+wcc.call(arg1, arg2, function(result) { console.log(result); });
+*/
+ 
+var WolframCloudCall;
+
+(function() {
+WolframCloudCall = function() {	this.init(); };
+
+var p = WolframCloudCall.prototype;
+
+p.init = function() {};
+
+p._createCORSRequest = function(method, url) {
+	var xhr = new XMLHttpRequest();
+	if ("withCredentials" in xhr) {
+		xhr.open(method, url, true);
+	} else if (typeof XDomainRequest != "undefined") {
+		xhr = new XDomainRequest();
+		xhr.open(method, url);
+	} else {
+		xhr = null;
+	}
+	return xhr;
+};
+
+p._encodeArgs = function(args) {
+	var argName;
+	var params = "";
+	for (argName in args) {
+		params += (params == "" ? "" : "&");
+		params += encodeURIComponent(argName) + "=" + encodeURIComponent(args[argName]);
+	}
+	return params;
+};
+
+p._auxCall = function(url, args, callback) {
+	var params = this._encodeArgs(args);
+	var xhr = this._createCORSRequest("post", url);
+	if (xhr) {
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		//xhr.setRequestHeader("EmbedCode-User-Agent", "EmbedCode-JavaScript/1.0");
+		xhr.onload = function() {
+			if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+				callback(xhr.responseText);
+			} else {
+				callback(null);
+			}
+		};
+		xhr.send(params);
+	} else {
+		throw new Error("Could not create request object.");
+	}
+};
+
+p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, callback) {
+	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/modeloCarga";
+	var args = {VNomAbs: arg1, SNomR: arg2, SNomI: arg3, modelo: arg4, VAbs: arg5, VDeg: arg6, fatorz:arg7, fatori: arg8, fatorp: arg9};
+	var callbackWrapper = function(result) {
+		if (result === null) callback(null);
+		else callback(result);
+	};
+	this._auxCall(url, args, callbackWrapper);
+	console.log(args);
+};
+})();
+
+
+
+document.getElementById('executa').addEventListener("click",chamaApi);
+
+function chamaApi(){
+    var wcc = new WolframCloudCall();
+
+	var obj,obj2,obj3;
+	
+    arg1=document.getElementById('VNomAbs').value;
+	arg1=parseFloat(arg1);
+    arg2=document.getElementById('SNomR').value;
+	arg2=parseFloat(arg2);
+    arg3=document.getElementById('SNomI').value;
+	arg3=parseFloat(arg3);
+    arg4=document.getElementById('modelo').value;
+    arg5=document.getElementById('VAbs').value;
+	arg5=parseFloat(arg5);
+    arg6=document.getElementById('VDeg').value;
+	arg6=parseFloat(arg6);
+    arg7=document.getElementById('fatorz').value;
+	arg7=parseFloat(arg7);
+    arg8=document.getElementById('fatori').value;
+	arg8=parseFloat(arg8);
+    arg9=document.getElementById('fatorp').value;
+	arg9=parseFloat(arg9);
+    if(arg7+arg8+arg9!==1) window.alert('Os fatores z,i,p devem somar zero!')
+    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, function(result) { 
+        
+
+        //console.log(result) ;
+	
+	    
+	    obj=JSON.parse(result);
+	    obj2 = JSON.parse(obj.Result);
+	    obj3 = JSON.parse(obj2);
+	 
+	window.document.getElementById('saida1').innerHTML = 'iAbs = ' + obj3.iAbs;
+	window.document.getElementById('saida2').innerHTML = 'iDeg = ' + obj3.iDeg;
+	window.document.getElementById('saida3').innerHTML = 'SR = ' + obj3.SR;
+	window.document.getElementById('saida4').innerHTML = 'SI = ' + obj3.SI;
+        
+        
+        
+    }
+            );
+    }
+        
+        </script>
+
+</html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
