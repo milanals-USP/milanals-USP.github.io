@@ -14,16 +14,28 @@ and open the template in the editor.
         
             Modelo de carga:<br>
         <br> 
-        	<div id="saida1">saida1</div><br>
-		 <div id="saida2">saida2</div><br>
-		 <div id="saida3">saida3</div><br>
-		 <div id="saida4">saida4</div><br>
-        
+		<!--xA: <input type="text" id="xA" value=100><br> -->
+		
+        		<div id="saida1">saida1</div><br>
+		 	<div id="saida2">saida2</div><br>
+		 	<div id="saida3">saida3</div><br>
+			<div id="saida4">saida4</div><br>
+			<div id="saida5">saida5</div><br>
+<div id="saida6">saida6</div><br>
+<div id="saida7">saida7</div><br>
+<div id="saida8">saida8</div><br>
+<div id="saida9">saida9</div><br>
+<div id="saida10">saida10</div><br>
+<div id="saida11">saida11</div><br>
+<div id="saida12">saida12</div><br>
+<div id="saida13">saida13</div><br>
+<div id="saida14">saida14</div><br>
+<div id="saida15">saida15</div><br>
+<div id="saida16">saida16</div><br>
+<div id="saida17">saida17</div><br>
+<div id="saida18">saida18</div><br>
+
        
-        VNom: <input type="text" id="VNomAbs" value=100><br>
-        PNom: <input type="text" id="SNomR" value=100> SNom: <input type="text" id="SNomI" value=0><br>
-        modelo (z/i/p/zip): <input type="text" id="modelo" value="z"> z: <input type="text" id="fatorz" value=1> i: <input type="text" id="fatori" value=0> p: <input type="text" id="fatorp" value=0><br>
-        módulo de V: <input type="text" id="VAbs" value=100>, ângulo <input type="text" id="VDeg" value=0><br>
         
         <input type="button" id="executa" value="executa">
       
@@ -95,9 +107,9 @@ p._auxCall = function(url, args, callback) {
 	}
 };
 
-p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, callback) {
-	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/modeloCarga";
-	var args = {VNomAbs: arg1, SNomR: arg2, SNomI: arg3, modelo: arg4, VAbs: arg5, VDeg: arg6, fatorz:arg7, fatori: arg8, fatorp: arg9};
+p.call = function(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, callback) {
+	var url = "https://www.wolframcloud.com/obj/user-1b79dd3c-3896-407e-96ba-ae33ce75eecd/compSim012ABC";
+	var args = {xA: arg1, yA: arg2, xB: arg3, yB: arg4, xC: arg5, yC: arg6, x0:arg7, y0: arg8, x1: arg9, y1:arg10, x2:arg11, y2:arg12};
 	var callbackWrapper = function(result) {
 		if (result === null) callback(null);
 		else callback(result);
@@ -116,7 +128,7 @@ function chamaApi(){
 
 	var obj,obj2,obj3;
 	
-    arg1=document.getElementById('VNomAbs').value;
+    /*arg1=document.getElementById('VNomAbs').value;
 	arg1=parseFloat(arg1);
     arg2=document.getElementById('SNomR').value;
 	arg2=parseFloat(arg2);
@@ -133,8 +145,8 @@ function chamaApi(){
 	arg8=parseFloat(arg8);
     arg9=document.getElementById('fatorp').value;
 	arg9=parseFloat(arg9);
-    if(arg7+arg8+arg9!==1) window.alert('Os fatores z,i,p devem somar zero!')
-    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, function(result) { 
+    if(arg7+arg8+arg9!==1) window.alert('Os fatores z,i,p devem somar zero!')*/
+    wcc.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9,arg10,arg11,arg12, function(result) { 
         
 
         //console.log(result) ;
@@ -144,10 +156,8 @@ function chamaApi(){
 	    obj2 = JSON.parse(obj.Result);
 	    obj3 = JSON.parse(obj2);
 	 
-	window.document.getElementById('saida1').innerHTML = 'iAbs = ' + obj3.iAbs;
-	window.document.getElementById('saida2').innerHTML = 'iDeg = ' + obj3.iDeg;
-	window.document.getElementById('saida3').innerHTML = 'SR = ' + obj3.SR;
-	window.document.getElementById('saida4').innerHTML = 'SI = ' + obj3.SI;
+	window.document.getElementById('saida1').innerHTML = 'x0A = ' + obj3.x0A;
+	window.document.getElementById('saida2').innerHTML = 'y0A = ' + obj3.y0A;
         
         
         
